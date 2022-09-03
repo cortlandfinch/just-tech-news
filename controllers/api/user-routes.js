@@ -65,9 +65,13 @@ router.post('/', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-
+  
         res.json(dbUserData);
       });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
@@ -91,11 +95,10 @@ router.post('/login', (req, res) => {
     }
 
     req.session.save(() => {
-      // declare session variables
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-
+  
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
   });
@@ -123,7 +126,7 @@ router.put('/:id', (req, res) => {
     }
   })
     .then(dbUserData => {
-      if (!dbUserData[0]) {
+      if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
