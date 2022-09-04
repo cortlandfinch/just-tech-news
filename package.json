@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "seeds": "node seeds/index.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "jest": "^29.0.2"
   }
 }
